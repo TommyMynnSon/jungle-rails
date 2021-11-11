@@ -2,20 +2,6 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_items = LineItem
-                        .joins(:product, :order)
-                        .select("
-                          line_items.id AS id,
-                          products.image AS image,
-                          products.name AS name,
-                          products.description AS description,
-                          products.price_cents AS price,
-                          line_items.quantity AS quantity,
-                          line_items.total_price_cents AS line_total_cents,
-                          orders.total_cents AS order_total_cents,
-                          orders.email AS email
-                        ")
-                        .where(order_id: params[:id])
   end
 
   def create
