@@ -24,9 +24,9 @@
       <tbody>
         <%#= render @sales %> 
 
-        <% @sales.each |s| %>
+        <% @sales.each do |s| %>
           <%= render 'sale', sale: s %>
-        <% End %>
+        <% end %>
       </tbody>
     </table>
 
