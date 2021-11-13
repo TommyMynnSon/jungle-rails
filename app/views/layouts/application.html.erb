@@ -19,13 +19,15 @@
       <% end %>
     </div>
 
-    <br />
-    <br />
+    <% if active_sale? %>
+      <br />
+      <br />
 
-    <p class="alert alert-info">
-      There's an active <%= "Back to school" %> sale going on!
-      <strong>Everything is <%= 15 %>% off!</strong>
-    </p>
+      <p class="alert alert-info">
+        There's an active <%= "Back to school" %> sale going on!
+        <strong>Everything is <%= 15 %>% off!</strong>
+      </p>
+    <% end %>
 
     <%= yield %>
   </main>
