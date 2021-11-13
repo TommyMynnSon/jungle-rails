@@ -22,7 +22,11 @@
         </tr>
       </thead>
       <tbody>
-        <%= render @sales %>
+        <%#= render @sales %> 
+
+        <% @sales.each |s| %>
+          <%= render 'sale', sale: s %>
+        <% End %>
       </tbody>
     </table>
 
