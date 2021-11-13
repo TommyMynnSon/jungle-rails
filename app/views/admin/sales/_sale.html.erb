@@ -12,11 +12,15 @@
     <%= sale.percent_off %>
   </td>
   <td>
-    <% if sale.ends_on < Date.current %>
+    <% if sale.finished? %>
       <span class="label label-danger">Finished</span>
-    <% elsif sale.starts_on > Date.current %>
+    <% end %>
+
+    <% if sale.upcoming? %>
       <span class="label label-warning">Upcoming</span>
-    <% else %>
+    <% end %>
+
+    <% if sale.active? %>
       <span class="label label-success">Active</span>
     <% end %>
   </td>
