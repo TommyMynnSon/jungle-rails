@@ -6,4 +6,5 @@ class Admin::DashboardController < ApplicationController
     @count_of_products = Product.count
     @count_of_categories = Category.count
   end
+  
 end
