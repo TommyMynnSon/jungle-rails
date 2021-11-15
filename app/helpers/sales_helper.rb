@@ -4,4 +4,8 @@ module SalesHelper
     Sale.active.any?
   end
 
+  def get_active_sale
+    Sale.active.first
+  end
+
 end
