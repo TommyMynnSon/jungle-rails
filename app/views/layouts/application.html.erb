@@ -24,8 +24,8 @@
       <br />
 
       <p class="alert alert-info">
-        There's an active <%= "Back to school" %> sale going on!
-        <strong>Everything is <%= 15 %>% off!</strong>
+        There's an active <%= get_active_sale.name %> sale going on!
+        <strong>Everything is <%= get_active_sale.percent_off %>% off!</strong>
       </p>
     <% end %>
 
