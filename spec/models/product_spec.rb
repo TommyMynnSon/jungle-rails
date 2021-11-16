@@ -7,11 +7,11 @@ RSpec.describe Product, type: :model do
       @category = Category.new(name: 'Refurbished')
       
       @product = Product.new(
-                              name: 'Refurbished iPhone 13 PRO MAX 128GB',
-                              price: 500,
-                              quantity: 1,
-                              category: @category
-                            )
+        name: 'Refurbished iPhone 13 PRO MAX 128GB',
+        price: 500,
+        quantity: 1,
+        category: @category
+      )
         
       expect(@product).to be_valid
     end
@@ -28,6 +28,12 @@ RSpec.describe Product, type: :model do
       @product.valid?
 
       expect(@product.errors.full_messages).to include("Name can't be blank")
+
+      @product.name = 'Refurbished iPhone 13 PRO MAX 128GB'
+
+      @product.valid?
+
+      expect(@product.errors.full_messages).to be_empty
     end
 
     it 'should not be valid if price is not set' do
@@ -50,8 +56,24 @@ RSpec.describe Product, type: :model do
       expect(@product.errors.full_messages).to be_empty
     end
 
-    it 'something' do
-      
+    it 'should not be valid if quantity is not set' do
+      @category = Category.new(name: 'Refurbished')
+
+      @product = Product.new(
+        name: 'Refurbished iPhone 13 PRO MAX 128GB',
+        price: 500,
+        category: @category
+      )
+
+      @product.valid?
+
+      expect(@product.errors.full_messages).to include("Quantity can't be blank")
+
+      @product.quantity = 1
+
+      @product.valid?
+
+      expect(@product.errors.full_messages).to be_empty
     end
 
     it 'something' do
