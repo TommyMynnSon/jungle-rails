@@ -76,20 +76,23 @@ RSpec.describe Product, type: :model do
       expect(@product.errors.full_messages).to be_empty
     end
 
-    it 'something' do
-      
+    it 'should not be valid if category is not set' do
+      @product = Product.new(
+        name: 'Refurbished iPhone 13 PRO MAX 128GB',
+        price: 500,
+        quantity: 1,
+      )
+        
+      @product.valid?
+
+      expect(@product.errors.full_messages).to include("Category can't be blank")
+
+      @product.category = Category.new(name: 'Refurbished')
+
+      @product.valid?
+
+      expect(@product.errors.full_messages).to be_empty
     end
   end
 
 end
-
-# it "is valid" do
-#   @product = Product.new
-#   @cat = Category.new
-#   @cat.name = 'Test'
-#   @product.name = 'Test' # invalid state
-#   @product.price_cents = 12311
-#   @product.quantity = 3
-#   @product.category = @cat
-#   expect(@product.valid?).to be true
-# end
