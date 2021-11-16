@@ -25,13 +25,29 @@ RSpec.describe Product, type: :model do
         category: @category
       )
 
-      @product.save
+      @product.valid?
 
       expect(@product.errors.full_messages).to include("Name can't be blank")
     end
 
-    it 'something' do
-      
+    it 'should not be valid if price is not set' do
+      @category = Category.new(name: 'Refurbished')
+
+      @product = Product.new(
+        name: 'Refurbished iPhone 13 PRO MAX 128GB',
+        quantity: 1,
+        category: @category
+      )
+
+      @product.valid?
+
+      expect(@product.errors.full_messages).to include("Price can't be blank")
+
+      @product.price = 500
+
+      @product.valid?
+
+      expect(@product.errors.full_messages).to be_empty
     end
 
     it 'something' do
