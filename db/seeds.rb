@@ -28,6 +28,7 @@ puts "Finding or Creating Categories ..."
 cat1 = Category.find_or_create_by! name: 'Apparel'
 cat2 = Category.find_or_create_by! name: 'Electronics'
 cat3 = Category.find_or_create_by! name: 'Furniture'
+cat4 = Category.find_or_create_by! name: 'Games'
 
 ## PRODUCTS
 
@@ -130,6 +131,14 @@ cat3.products.create!({
   image: open_asset('furniture3.jpg'),
   quantity: 23,
   price: 2_483.75
+})
+
+cat4.products.create!({
+  name:  'Pokemon Brilliant Diamond',
+  description: 'Latest Pokémon game! Embark in an epic journey in the 2021 remake of the 2006 Nintendo DS role-playing video game Pokémon Diamond.',
+  image: open_asset('brilliant_diamond.jpeg'),
+  quantity: 5,
+  price: 79.99
 })
 
 
