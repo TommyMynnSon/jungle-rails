@@ -68,6 +68,36 @@ RSpec.describe User, type: :model do
 
       expect(@user.errors.full_messages).to be_empty
     end
+
+    it 'should not be valid if email set already exists in database' do
+      @user_1 = User.new(
+        name: 'John Doe',
+        email: 'johndoe@gmail.com',
+        password: '0000',
+        password_confirmation: '0000'
+      )
+
+      @user_1.save
+
+      expect(@user_1.errors.full_messages).to be_empty
+
+      @user_2 = User.new(
+        name: 'John Doe',
+        email: 'johndoe@gmail.com',
+        password: '0000',
+        password_confirmation: '0000'
+      )
+
+      @user_2.save
+
+      expect(@user_2.errors.full_messages).to include("Email has already been taken")
+
+      @user_2.email = 'johndoe1@gmail.com'
+
+      @user_2.save
+
+      expect(@user_2.errors.full_messages).to be_empty
+    end
   end
   
 end
