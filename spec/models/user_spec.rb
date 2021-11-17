@@ -204,5 +204,37 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to be_empty
     end
   end
+
+  describe '.authenticate_with_credentials' do
+    it 'should pass with valid credentials' do
+      @user = User.new(
+        name: 'John Doe',
+        email: 'johndoe@gmail.com',
+        password: '0000',
+        password_confirmation: '0000'
+      )
+
+      @user.save
+  
+      @result = User.authenticate_with_credentials(@user.email, @user.password)
+      
+      expect(@result).not_to be_nil
+    end
+
+    it 'should not pass with invalid credentials' do
+      @user = User.new(
+        name: 'John Doe',
+        email: 'johndoe@gmail.com',
+        password: '0000',
+        password_confirmation: '1111'
+      )
+
+      @user.save
+  
+      @result = User.authenticate_with_credentials(@user.email, '1111')
+      
+      expect(@result).to be_nil
+    end
+  end
   
 end
