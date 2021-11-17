@@ -45,6 +45,10 @@ class OrdersController < ApplicationController
     enhanced_cart.each do |entry|
       product = entry[:product]
       quantity = entry[:quantity]
+
+      product.quantity = product.quantity - quantity
+      product.save
+
       order.line_items.new(
         product: product,
         quantity: quantity,
