@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 
   def self.authenticate_with_credentials(email, password)
-    @user = User.find_by_email(email.downcase)
+    @user = User.find_by_email(email.downcase.strip)
 
     if @user && @user.authenticate(password)
       @user
