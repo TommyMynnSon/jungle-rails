@@ -13,6 +13,24 @@ RSpec.describe User, type: :model do
 
       expect(@user).to be_valid
     end
+
+    it 'should not be valid if password is not set and password_confirmation is set' do
+      @user = User.new(
+        name: 'John Doe',
+        email: 'johndoe@gmail.com',
+        password_confirmation: '0000'
+      )
+
+      @user.valid?
+
+      expect(@user.errors.full_messages).to include("Password can't be blank")
+
+      @user.password = '0000'
+
+      @user.valid?
+
+      expect(@user.errors.full_messages).to be_empty
+    end
   end
   
 end
