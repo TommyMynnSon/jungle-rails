@@ -183,6 +183,26 @@ RSpec.describe User, type: :model do
 
       expect(@user.errors.full_messages).to be_empty
     end
+
+    it 'should not be valid if password is less than 2 characters' do
+      @user = User.new(
+        name: 'John Doe',
+        email: 'johndoe@gmail.com',
+        password: '0',
+        password_confirmation: '0'
+      )
+
+      @user.valid?
+
+      expect(@user.errors.full_messages).to include("Password is too short (minimum is 2 characters)")
+
+      @user.password = '00'
+      @user.password_confirmation = '00'
+
+      @user.valid?
+
+      expect(@user.errors.full_messages).to be_empty
+    end
   end
   
 end
