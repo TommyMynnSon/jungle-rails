@@ -141,5 +141,28 @@ cat4.products.create!({
   price: 79.99
 })
 
+## SALES
+
+sale1 = Sale.create!({
+  name: 'Trick or Sale!',
+  percent_off: 15,
+  starts_on: 'Oct 1, 2021',
+  ends_on: 'Oct 31, 2021'
+})
+
+sale2 = Sale.create!({
+  name: 'Christmas Frenzy!',
+  percent_off: 25,
+  starts_on: 'Nov 1, 2021',
+  ends_on: 'Jan 1, 2022'
+})
+
+sale3 = Sale.create!({
+  name: 'So Hot!',
+  percent_off: 30,
+  starts_on: 'Jun 1, 2022',
+  ends_on: 'Sep 1, 2022'
+})
+
 
 puts "DONE!"
